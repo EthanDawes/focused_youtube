@@ -105,19 +105,27 @@ body.fy-results-page .ytd-item-section-renderer {
   margin-right: auto;
 }
 
+/* Styles specific to /watch */
 body.fy-watch-page #guide-button,
 body.fy-watch-page #guide-content,
 body.fy-watch-page #end,
 body.fy-watch-page #sub-menu,
-body.fy-watch-page #related,
+#related,  /* Remove recommend sidebar. Don't target body.fy-watch-page because recommendations can flash onscreen when navigating to channel page */
 body.fy-watch-page #subscribe-button,
 ytd-comments #contents ytd-comment-thread-renderer:nth-child(n + 3),  /* Only show first two comments */
 /*body.fy-watch-page #comments,* /
 body.fy-watch-page ytd-button-renderer, /* This is causing issues with showing the add to playlist button. A side effect is that it brings back the side buttons (see rule for tp-yt-app-drawer) */
 body.fy-watch-page yt-icon-button.dropdown-trigger:first-of-type,
 body.fy-watch-page ytd-sentiment-bar-renderer,
-.ytd-browse .app-header {
-  display: none;
+.ytd-browse .app-header,
+.html5-endscreen,  /* Remove suggested video endscreen */
+.ytp-ce-element,  /* Remove end-video subscribe and author recommendations */
+/*.ytd-popup-container,  /* Remove YT premium/TV nudges */
+.ytp-pause-overlay,  /* hide suggest video popup when embedded videos paused */
+.ytp-next-button,  /* Remove play next button */
+ytd-live-chat-frame  /* Hide live chat and chat replay */
+{
+  display: none !important;
 }
 
 body.fy-watch-page ytd-video-secondary-info-renderer {
@@ -129,22 +137,11 @@ ytd-browse[page-subtype='channels'] .app-header {
   display: none;
 }
 
-/* Styles specific to /watch */
-.html5-endscreen,  /* Remove suggested video endscreen */
-.ytp-ce-element,  /* Remove end-video subscribe and author reccomendations */
-/*.ytd-popup-container,  /* Remove YT premium/TV nudges */
-.ytp-pause-overlay,  /* hide suggest video popup when embedded videos paused */
-.ytp-next-button,  /* Remove play next button */
-ytd-live-chat-frame  /* Hide live chat and chat replay */
-{
-  display: none !important;
-}
-
 /* TODO: fix channel name on some channels (eg. https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA). Strangely, fixes itself upon resizing */
 /* TODO: add back search filter button */
 /* TODO: move to its own branch */
 
-.ytd-watch-flexy#secondary {  /* Remove recommend sidebar, give video more space unless there it is a playlist */
+.ytd-watch-flexy#secondary {  /* give video more space unless there it is a playlist */
   width: auto !important;
   min-width: 0 !important;
   max-width: var(--ytd-watch-flexy-sidebar-width);
