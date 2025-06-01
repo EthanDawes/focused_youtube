@@ -6,24 +6,28 @@ Thank you to [makaroni4/focused_youtube](https://github.com/makaroni4/focused_yo
 
 :heart: FY **does not track any user data**. It's a simple Vanilla JS application made with only one purpose – to help you avoid Youtube's rabbit hole.
 
-:sparkles: **Changes from upstream:** [category enforcement](#-category-enforcement), [subscribe to playlists](https://github.com/funblaster22/focused_youtube/blob/8fa787c7c94dd1d8b2cf0d2e1cb957ccb4ed0f69/js/app.js#L45), desaturate thumbnails, re-enable comments, disable channel page & shorts, [always keep enabled](https://github.com/funblaster22/focused_youtube/tree/showhide/watchdog-ext)
+:sparkles: **Changes from upstream:**
+- [category enforcement](#-category-enforcement)
+- subscribe to playlists ([`app.js:initSubscriptions`](https://github.com/EthanDawes/focused_youtube/blob/main/main/js/app.js#:~:text=const%20playlists%20=%20[))
+- desaturate thumbnails
+- Show only first 2 comments
+- Only allow videos and playlist tabs on channel pages
+- Redirect shorts to their video equivilent (thus no infinite scroll)
+- [always keep enabled](https://github.com/funblaster22/focused_youtube/tree/main/watchdog-ext)
+- Block videos from known problematic channels that I waste time on and regret ([`app.js:isBannedChannel`](https://github.com/EthanDawes/focused_youtube/blob/main/main/js/app.js#:~:text=function%20isBannedChannel()%20{))
+
+There is a notable lack of GUI customization options because this is customized to suit my needs and intended for a developer audience. If it really gains traction I might consider it.
 
 ## Screenshots
 
-### 🏠 Distraction-free Youtube homepage.
-
-<img width="800" alt="home_page" src="https://user-images.githubusercontent.com/768070/134961830-40a6ec9d-9593-4447-b3d7-fa02462d6a19.png">
-
-### 🔍 Searching disabled
+### 🔍🏠 Searching and homepage disabled
 
 ### 📺 Noise-free video page.
 
 <img width="800" alt="video_page" src="https://user-images.githubusercontent.com/768070/134961989-6673499b-311f-4334-825b-815b66446fd1.png">
 
-Only shows the top two comments
-
 ### 🙅 Category enforcement
-Disallow watching videos from [hard-coded categories](https://github.com/funblaster22/focused_youtube/blob/15f80de9e16cdfff07981c9fcb48db18a1a84940/js/app.js#L237). If the video was misclassified, you can type in the correct category. This frequently changes.
+Disallow watching videos from hard-coded categories ([`app.js:checkVidCat`](https://github.com/EthanDawes/focused_youtube/blob/main/main/js/app.js#:~:text=function%20checkVidCat()%20{)). If the video was misclassified, you can type in the correct category. This frequently changes.
 
 <img width="800" alt="video_page" src="https://user-images.githubusercontent.com/53224922/205467755-a83d01f9-d64c-437f-b4c5-55e8e4b4ebab.png">
 
