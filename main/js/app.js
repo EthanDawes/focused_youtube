@@ -17,6 +17,12 @@
   }
 
   const initFY = () => {
+	  chrome.runtime.sendMessage('CHECK_ALLOWED_INCOGNITO_ACCESS', res => {
+	  if (!res.allowed) {
+		initHomePage("Incognito access is required for strict blocking");
+		return;
+	  }
+	});
     cleanUpFYClasses();
 
     if (location.pathname === "/feed/subscriptions") {
@@ -127,9 +133,9 @@
     return a;
   }
 
-  const initHomePage = () => {
+  const initHomePage = (customMsg = "Page is disallowed") => {
     document.body.replaceChildren();  // Using innerHTML violates CSP
-    requestAnimationFrame(() => alert("Page is disallowed"));  // Wait to prevent freezing with content on screen
+    requestAnimationFrame(() => alert(customMsg));  // Wait to prevent freezing with content on screen
     history.back();
   }
 
