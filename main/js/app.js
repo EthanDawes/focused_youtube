@@ -17,12 +17,12 @@
   }
 
   const initFY = () => {
-	  chrome.runtime.sendMessage('CHECK_ALLOWED_INCOGNITO_ACCESS', res => {
-	  if (!res.allowed) {
-		initHomePage("Incognito access is required for strict blocking");
-		return;
-	  }
-	});
+      chrome.runtime.sendMessage('CHECK_ALLOWED_INCOGNITO_ACCESS', res => {
+      if (!res.allowed) {
+        initHomePage("Incognito access is required for strict blocking");
+        return;
+      }
+    });
     cleanUpFYClasses();
 
     if (location.pathname === "/feed/subscriptions") {
@@ -88,7 +88,7 @@
       "PL0vfts4VzfNiI1BsIK5u7LpPaIDKMJIDN",  // Fireship 100 seconds
       "PLxyDPFsnfrbl1sCoZrgD_-7OQYA9h9o9h",  // Lackadaisy
       "PLaHHpDSEtBWNcGluMk--beDjzriSsp-f7",  // Atlas and the Stars
-	  "PLGxvob7l-P9gtuvUpTH97Rt4LcyXXHs6l",  // 2 gay cats
+      "PLGxvob7l-P9gtuvUpTH97Rt4LcyXXHs6l",  // 2 gay cats
       // "OLAK5uy_l7V5rVd1ESx0tPtiFFkjinoX-yWZXj8KI",  // Spellcasting TODO: artist playlists. This doesn't work b/c all songs have 'added' = today and appear non-chronologically (by popularity)
     ];
     for (const playlist of playlists) {
