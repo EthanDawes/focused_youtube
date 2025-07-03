@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Strict Focused Youtube",
   "description": "Open source extension that removes comments/recommendations from Youtube: https://github.com/funblaster22/focused_youtube",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "author": "Ethan Dawes",
   "icons": {
     "128": "extension_icon.png"
