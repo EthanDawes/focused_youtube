@@ -11,13 +11,7 @@
     "management"
   ],
   "background": {
-    "scripts": ["background.js"],
     "service_worker": "background.js"
-  },
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "watchdog@ethandawes.dev"
-    }
   },
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoIjFbiCSaDjdXyWGZ8Bkfa+2CAHlJEud2a1EESWlhLVmV95pmMF1499crNIJq8h4VNWBAqRGcdEhyPKnk5z7MARhs5DDqZUhUe8QwvzkaQlcnvVpcDeW86pkPigIYIIDtajv1p6DagYPczcKRFxIOWwTigxkULdDqlr+EPkKykJ15dG4TY/0Ee1ZHtjqsI0g5x0cTFkvhmR9tw/YcDFAlfvCbB3mmYrnmkAQPOZU+YVIUUeKKlo3YL3CcFM+JhlfZsmd/0n4dyf1oiI2amB7U1KPx4pvd4aJ9D7exWrg+vdE8H+RH2RY0LyilvOgS98gmo8BPLRPq0CQVHRpnu7RtQIDAQAB"
 }
