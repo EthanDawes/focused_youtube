@@ -88,6 +88,7 @@
       "PL0vfts4VzfNiI1BsIK5u7LpPaIDKMJIDN",  // Fireship 100 seconds
       "PLxyDPFsnfrbl1sCoZrgD_-7OQYA9h9o9h",  // Lackadaisy
       "PLaHHpDSEtBWNcGluMk--beDjzriSsp-f7",  // Atlas and the Stars
+	  "PLGxvob7l-P9gtuvUpTH97Rt4LcyXXHs6l",  // 2 gay cats
       // "OLAK5uy_l7V5rVd1ESx0tPtiFFkjinoX-yWZXj8KI",  // Spellcasting TODO: artist playlists. This doesn't work b/c all songs have 'added' = today and appear non-chronologically (by popularity)
     ];
     for (const playlist of playlists) {
@@ -234,7 +235,35 @@
   }
   
   function isBannedChannel() {
-    const problematicChannels = new Set(["fern-tv", "VinceVintage", "MentourPilot", "GreenDotAviation", "LegalEagle", "thechadx2", "kurtisconner", "drewisgooden", "Danny-Gonzalez", "hoogyoutube", "fish_381", "BrandonRogers", "mkbhd", "Mrwhosetheboss", "CGPGrey", "neoexplains", "kurzgesagt"]);
+    // Too addictive
+    const problematicChannels = new Set([
+        // Drawn-out documentaries that don't respect my time and I don't learn
+        "fern-tv",
+        "VinceVintage",
+        "hoogyoutube",
+        "CGPGrey",
+        "neoexplains",
+        "kurzgesagt",
+        
+        // Repetitive: incidents often have same few causes. Tricks you by appearing educational
+        "MentourPilot",
+        "GreenDotAviation",
+        
+        // News doomsrolling
+        "LegalEagle",  // "It depends" making it impossible to learn anything. Repeats a lot of info I already know
+        "mkbhd",  // Videos appear more interesting than they are. Like Google news, the title is the news and the video is padding. Too heavy focus on boring stats.
+        "Mrwhosetheboss",  // Too sensationalized. Same mkbhd. Only good content is yearly phone awards. For these, search for a page that embeds it
+        "Fireship",  // Dislike AI overhype, bad takes, news contains too much padding, not learning anymore
+        
+        // Commentary. Highlights the worst of people, which I don't need in my life. Often boring but hard to stop
+        "thechadx2",
+        "kurtisconner",
+        "drewisgooden",
+        "Danny-Gonzalez",
+        
+        "fish_381",  // furry tiktok compilations, bad for the same reason as TikTok itself: reduces your brain to mush, releases dopamine/happiness, but can't replicate the feeling from watching subsequent videos (diminishing returns), except for the rare hit that keeps me hooked.
+        "BrandonRogers",  // The series are quality entertainment, but skits can be addictive (brain off any many), some also have unpleasant humor which becomes repetitive but can't stop
+    ]);
 
     /*
     problem: channel URLs prefixed with /@ and /channel have different identifiers. Solutions:
