@@ -131,6 +131,7 @@ ytd-browse[page-subtype='channels'] .app-header {
 
 /* Styles specific to /watch */
 .html5-endscreen,  /* Remove suggested video endscreen */
+.ytp-fullscreen-grid,  /* Remove NEW suggested video endscreen */
 .ytp-ce-element,  /* Remove end-video subscribe and author reccomendations */
 /*.ytd-popup-container,  /* Remove YT premium/TV nudges */
 .ytp-pause-overlay,  /* hide suggest video popup when embedded videos paused */
