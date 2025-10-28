@@ -119,6 +119,7 @@ body.fy-watch-page yt-icon-button.dropdown-trigger:first-of-type,
 body.fy-watch-page ytd-sentiment-bar-renderer,
 .ytd-browse .app-header,
 .html5-endscreen,  /* Remove suggested video endscreen */
+.ytp-fullscreen-grid,  /* Remove NEW suggested video endscreen */
 .ytp-ce-element,  /* Remove end-video subscribe and author recommendations */
 /*.ytd-popup-container,  /* Remove YT premium/TV nudges */
 .ytp-pause-overlay,  /* hide suggest video popup when embedded videos paused */
