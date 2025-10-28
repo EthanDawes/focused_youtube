@@ -17,6 +17,12 @@
   }
 
   const initFY = () => {
+      chrome.runtime.sendMessage('CHECK_ALLOWED_INCOGNITO_ACCESS', res => {
+      if (!res.allowed) {
+        initHomePage("Incognito access is required for strict blocking");
+        return;
+      }
+    });
     cleanUpFYClasses();
 
     if (location.pathname === "/feed/subscriptions") {
@@ -29,7 +35,7 @@
     }
     else if (location.pathname === "/watch" || location.pathname.startsWith("/live") || location.pathname.startsWith("/clip")) {
       if (isBannedChannel())
-        initHomePage();
+        initHomePage("Banned channel");
       else
         initWatchPage();
     }
@@ -44,15 +50,15 @@
       }
 
       if (isBannedChannel()) {
-        initHomePage();
+        initHomePage("Banned channel");
       }
       // disallow viewing channels from google or with no browser history (common workaround using ctrl click)
       else if ((document.referrer && new URL(document.referrer).hostname === "www.google.com") || history.length === 1) {
-        initHomePage();
+        initHomePage("Cannot view channel from google or with no history");
       }
     }
     else {
-      initHomePage();
+      initHomePage("Not a approved page (can only view videos, settings, playlists, history, subscriptions)");
     }
   }
 
@@ -82,7 +88,9 @@
       "PL0vfts4VzfNiI1BsIK5u7LpPaIDKMJIDN",  // Fireship 100 seconds
       "PLxyDPFsnfrbl1sCoZrgD_-7OQYA9h9o9h",  // Lackadaisy
       "PLaHHpDSEtBWNcGluMk--beDjzriSsp-f7",  // Atlas and the Stars
+      "PLGxvob7l-P9gtuvUpTH97Rt4LcyXXHs6l",  // 2 gay cats
       // "OLAK5uy_l7V5rVd1ESx0tPtiFFkjinoX-yWZXj8KI",  // Spellcasting TODO: artist playlists. This doesn't work b/c all songs have 'added' = today and appear non-chronologically (by popularity)
+      "PL7ZZnDPU-0BBARql5y8JXkOw0uT2KrP93",  // Espresstoe Beans
     ];
     for (const playlist of playlists) {
       fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${playlist}&key=${apiKey}`)
@@ -127,9 +135,10 @@
     return a;
   }
 
-  const initHomePage = () => {
+  const initHomePage = (customMsg = "Page is disallowed") => {
+    // If it blocks an allowed page, check if internet connected
     document.body.replaceChildren();  // Using innerHTML violates CSP
-    requestAnimationFrame(() => alert("Page is disallowed"));  // Wait to prevent freezing with content on screen
+    requestAnimationFrame(() => alert(customMsg));  // Wait to prevent freezing with content on screen
     history.back();
   }
 
@@ -213,6 +222,7 @@
         "brain off": "give a fish a hug and talk it out! 🦈",
         bored: "exercise!",
         sleepy: "take a nap!",
+        related: "not the agreement, time-wasting tangents ahead",
     };
 
   function getQueryVariable(variable) {
@@ -228,7 +238,36 @@
   }
   
   function isBannedChannel() {
-    const problematicChannels = new Set(["fern-tv", "VinceVintage", "MentourPilot", "GreenDotAviation", "LegalEagle", "thechadx2", "kurtisconner", "drewisgooden", "Danny-Gonzalez", "hoogyoutube", "fish_381", "BrandonRogers", "mkbhd", "Mrwhosetheboss"]);
+    // Too addictive, does not add much life value. DO NOT CIRCUMVENT! Instead, remove yourself from technology
+    const problematicChannels = new Set([
+        // Drawn-out documentaries that don't respect my time and I don't learn
+        "fern-tv",
+        "VinceVintage",
+        "hoogyoutube",
+        "CGPGrey",
+        "neoexplains",
+        "kurzgesagt",
+
+        // Repetitive: incidents often have same few causes. Long videos. Tricks you by appearing educational
+        "MentourPilot",
+        "GreenDotAviation",
+
+        // News doomsrolling
+        "LegalEagle",  // "It depends" making it impossible to learn anything. Repeats a lot of info I already know
+        "mkbhd",  // Videos appear more interesting than they are. Like Google news, the title is the news and the video is padding. Too heavy focus on boring stats.
+        "Mrwhosetheboss",  // Too sensationalized. Same mkbhd. Only good content is yearly phone awards. For these, search for a page that embeds it
+        "Fireship",  // Dislike AI overhype, bad takes, news contains too much padding, not learning anymore
+        "TVTalksWithTom",  // I don't like the season, showcases the worst of people, no longer learning, pisses me off
+
+        // Commentary. Highlights the worst of people, which I don't need in my life. Often boring but hard to stop
+        "thechadx2",
+        "kurtisconner",
+        "drewisgooden",
+        "Danny-Gonzalez",
+
+        "fish_381",  // furry tiktok compilations, bad for the same reason as TikTok itself: reduces your brain to mush, releases dopamine/happiness, but can't replicate the feeling from watching subsequent videos (diminishing returns), except for the rare hit that keeps me hooked.
+        "BrandonRogers",  // The series are quality entertainment, but skits can be addictive (brain off any many), some also have unpleasant humor which becomes repetitive but can't stop
+    ]);
 
     /*
     problem: channel URLs prefixed with /@ and /channel have different identifiers. Solutions:
