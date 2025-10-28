@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Strict Focused Youtube",
   "description": "Open source extension that removes comments/recommendations from Youtube: https://github.com/funblaster22/focused_youtube",
-  "version": "1.4.3",
+  "version": "1.4.7",
   "author": "Ethan Dawes",
   "icons": {
     "128": "extension_icon.png"
@@ -25,7 +25,6 @@
       "css": [
         "styles/style.css"
       ],
-      "world": "MAIN",
       "run_at": "document_end",
       "all_frames": true
     },
@@ -59,5 +58,5 @@
       "id": "strict-focused-yt@ethandawes.dev"
     }
   },
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4eMad0E5CQKRzdv9RoqHpPi8lyn5klpLJWJzUA3bnltGMHbcEGBM9Kj5mTQjKuQsvIvp42R1/7rWOk2UI5l7WkbArtVT18puwJeDEVr+YnlXxEO/g39DrlCOENJOjUDFOt6/TTie35u5vVouJme3c3VTaC0vIVJpmdNhyAR3NKtliVGC0OmlM5ncxJYGaZpLihvhlKC8paGG8dsvMMLSKXFQZuzLn2tufJQgF5JqQ3AzIO9F0zwFe2tS1b54SFBUxIU1H/yYix7BY+O9Fy64fSn+n+9CVk2wDqdWhy9WVkWWFNbQGkKoRYxi+2pyigxvjwHpbfj5Hz7Qq9N8QoiCHQIDAQAB"
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqbOVaiR8tI0r96IuTQtjEMgl6n5QHjP30anZ1fprG/fsbYqVbDhQ1cy17maB/w6DA0TS3gYa2nlh3eEraar/LmdqK3D92fUXCjd6bZO/5rcYFeodtfK3Otu1pzeLrV1F/9+LUiDh3ruT8MiSTvMz943AMa948sR8nnwsYG7K7k39z2uNQNVfQ7ISafD+iO1FcukQuZnELLVd/+8VjZ0mIV/sdeLOz52S3Z1hECAQ4+WZoXjTtM2uDUsgPrxcmzlYDmXBfQztg7ioEirCdlD3f+uft60xlZ8EbvuWUX6z5E+TvMinVwFwSC1xZe8NIpjNaW47yIB8cIxl05GDqRhuKQIDAQAB"
 }
