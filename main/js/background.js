@@ -25,7 +25,7 @@ chrome.management.onUninstalled.addListener(info => {
 });
 
 function extensionInstalled(id) {
-  if (!enforce.has(browser.runtime.id))
+  if (!enforce.has(chrome.runtime.id))
     return false;  // Running Firefox, extension ids are not the same and following will fail
   return chrome.management.get(id)
     .then(() => true)
