@@ -17,11 +17,6 @@
   }
 
   const initFY = () => {
-    chrome.runtime.sendMessage('CHECK_ALLOWED_INCOGNITO_ACCESS', res => {
-      if (!res.allowed) {
-        initHomePage("Incognito access is required for strict blocking");
-      }
-    });
     cleanUpFYClasses();
 
     if (location.pathname === "/feed/subscriptions") {
@@ -165,6 +160,11 @@
   })();
 
   const isWebstoreVersion = chrome.runtime.id === "behjadmmpafnpaeijfoioegdpcbpbhij";
+  chrome.runtime.sendMessage('CHECK_ALLOWED_INCOGNITO_ACCESS', res => {
+    if (!res.allowed) {
+      initHomePage("Incognito access is required for strict blocking");
+    }
+  });
   chrome.runtime.sendMessage('CHECK_SUPERVISOR_INSTALLED').then(res => {
     if (res.watchdogInstalled && !res.selfWebstoreInstalled) {
       initHomePage("You cannot only have the development extension installed");
