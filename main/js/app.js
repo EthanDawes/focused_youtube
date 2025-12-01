@@ -90,7 +90,7 @@
       "PLaHHpDSEtBWNcGluMk--beDjzriSsp-f7",  // Atlas and the Stars
       "PLGxvob7l-P9gtuvUpTH97Rt4LcyXXHs6l",  // 2 gay cats
       // "OLAK5uy_l7V5rVd1ESx0tPtiFFkjinoX-yWZXj8KI",  // Spellcasting TODO: artist playlists. This doesn't work b/c all songs have 'added' = today and appear non-chronologically (by popularity)
-      "PL7ZZnDPU-0BBARql5y8JXkOw0uT2KrP93",  // Espresstoe Beans
+      //"PL7ZZnDPU-0BBARql5y8JXkOw0uT2KrP93",  // Espresstoe Beans
     ];
     for (const playlist of playlists) {
       fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${playlist}&key=${apiKey}`)
@@ -247,6 +247,8 @@
         "CGPGrey",
         "neoexplains",
         "kurzgesagt",
+        "LEMMiNO",
+        "OverSimplified",
 
         // Repetitive: incidents often have same few causes. Long videos. Tricks you by appearing educational
         "MentourPilot",
