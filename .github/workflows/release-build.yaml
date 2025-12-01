@@ -39,7 +39,7 @@ jobs:
 
     - name: Remove "key" from manifest.json
       run: |
-        jq 'del(.key, .background) | .permissions -= ["management"]' main/manifest.json > main/manifest.tmp && mv main/manifest.tmp main/manifest.json
+        jq 'del(.key)' main/manifest.json > main/manifest.tmp && mv main/manifest.tmp main/manifest.json
 
     - name: Zip main directory
       run: |
