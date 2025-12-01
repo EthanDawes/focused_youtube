@@ -1,4 +1,4 @@
-# My goals for Youtube
+## My goals for Youtube
 - Learning
 - Entertainment (high entertainment to time density)
 - High quality content
@@ -8,7 +8,7 @@
     - Filter by category
 - Be in control of what, when, and how long I watch
 
-# Subscription Criteria
+## Subscription Criteria
 (Doesn't need to meet all criteria, just most)
 - Respects me as a viewer, that means no clickbait
 - I will retain the information
@@ -28,4 +28,16 @@
 - Mrbeast
 
 Start watching because they are "entertaining enough" but I always leave dissatisfied
- 
+
+## Watchdog extension
+Seperate mini-extension that watch other extensions. If any were disabled, would re-enable.
+If any were deleted, would self-desctuct (to discourage me from tampering)
+
+Replaced by just installing 2 copies of the main extension: one locally and one from the web store
+to prevent circumvention by code modification. Plus, this will reduce code duplication (`background.js`).
+
+However, in development, I need to make code changes and see their results.
+In a non-primary browser, install both. In primary browser, install by policy.
+If local extension detected, will activate development protections: mute and blur video
+(since I don't actually need to watch the video in development).
+This enforcement code will run from the main extension, which is harder to modify.

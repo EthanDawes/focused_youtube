@@ -236,7 +236,7 @@
     }
     return undefined;
   }
-  
+
   function isBannedChannel() {
     // Too addictive, does not add much life value. DO NOT CIRCUMVENT! Instead, remove yourself from technology
     const problematicChannels = new Set([
