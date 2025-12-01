@@ -329,6 +329,15 @@
     document.documentElement.innerHTML = "Failed to block video after 4 seconds, reload the page";
   }
 
+  function isLiar() {
+    // Random 10% chance of failing to keep me on my toes
+    if (Math.random() * 100 < 10) {
+      alert("Liar liar, pants on fire");
+      return true;
+    }
+    return false;
+  }
+
   // Thank you https://stackoverflow.com/questions/24297929/javascript-to-listen-for-url-changes-in-youtube-html5-player for investigating YT events
   // This won't fire in embedded videos, which is probably best
   window.addEventListener('yt-page-data-updated', checkVidCat);
@@ -361,7 +370,7 @@
 
       if (categoryOrActivity) {
         const disallowedReason = disallowedReasons[categoryOrActivity];
-        if (allowedOverrides.has(categoryOrActivity) && await showChallenge(categoryOrActivity + " I am not lying ")) {
+        if (allowedOverrides.has(categoryOrActivity) && await showChallenge(categoryOrActivity + " I am not lying ") && !isLiar()) {
           playerElem.style.opacity = "100%";
         } else if (disallowedReason) {
           alert(disallowedReason);
