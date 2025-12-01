@@ -17,10 +17,9 @@
   }
 
   const initFY = () => {
-      chrome.runtime.sendMessage('CHECK_ALLOWED_INCOGNITO_ACCESS', res => {
+    chrome.runtime.sendMessage('CHECK_ALLOWED_INCOGNITO_ACCESS', res => {
       if (!res.allowed) {
         initHomePage("Incognito access is required for strict blocking");
-        return;
       }
     });
     cleanUpFYClasses();
@@ -165,65 +164,72 @@
     };
   })();
 
-  initFY();
-
-  observeDOM(document.body, function(){
-    if(currentUrl !== window.location.href) {
-      currentUrl = window.location.href;
-
+  const isWebstoreVersion = chrome.runtime.id === "behjadmmpafnpaeijfoioegdpcbpbhij";
+  chrome.runtime.sendMessage('CHECK_SUPERVISOR_INSTALLED').then(res => {
+    if (res.watchdogInstalled && !res.selfWebstoreInstalled) {
+      initHomePage("You cannot only have the development extension installed");
+    } else if (!(res.watchdogInstalled && res.selfWebstoreInstalled && isWebstoreVersion)) {
       initFY();
-    } else if (window.location.pathname === "/results") {  // Disallow ctrl-clicking on results page
-      for (const anchor of document.getElementsByTagName("a"))
-        anchor.onclick = ev => ev.preventDefault();
+
+      observeDOM(document.body, function() {
+        if(currentUrl !== window.location.href) {
+          currentUrl = window.location.href;
+
+          initFY();
+        } else if (window.location.pathname === "/results") {  // Disallow ctrl-clicking on results page
+          for (const anchor of document.getElementsByTagName("a"))
+            anchor.onclick = ev => ev.preventDefault();
+        }
+      });
     }
   });
 
   // https://gist.github.com/dgp/1b24bf2961521bd75d6c
   const catIds = {
-      "-1": "Unknown",
-      31: "Anime/Animation",
-      40: "Sci-Fi/Fantasy",
-      22: "People & Blogs",
-      2: "Autos & Vehicles",
-      30: "Movies",
-      1: "Film & Animation",
-      21: "Videoblogging",
-      27: "Education",
-      10: "Music",
-      19: "Travel & Events",
-      15: "Pets & Animals",
-      39: "Horror",
-      36: "Drama",
-      32: "Action/Adventure",
-      43: "Shows",
-      17: "Sports",
-      37: "Family",
-      35: "Documentary",
-      42: "Shorts",
-      26: "Howto & Style",
-      18: "Short Movies",
-      24: "Entertainment",
-      28: "Science & Technology",
-      20: "Gaming",
-      38: "Foreign",
-      25: "News & Politics",
-      23: "Comedy",
-      29: "Nonprofits & Activism",
-      41: "Thriller",
-      44: "Trailers",
-      34: "Comedy",
-      33: "Classics"
-    };
-    const allowedOverrides = new Set(["school", "stem", "tutorial", "news", "friends"]);
-    const disallowedReasons = {
-        gay: "go to the lgbtq center you queer!",
-        furry: "have you practiced drawing today? òwó",
-        sad: "go talk to people!",
-        "brain off": "give a fish a hug and talk it out! 🦈",
-        bored: "exercise!",
-        sleepy: "take a nap!",
-        related: "not the agreement, time-wasting tangents ahead",
-    };
+    "-1": "Unknown",
+    31: "Anime/Animation",
+    40: "Sci-Fi/Fantasy",
+    22: "People & Blogs",
+    2: "Autos & Vehicles",
+    30: "Movies",
+    1: "Film & Animation",
+    21: "Videoblogging",
+    27: "Education",
+    10: "Music",
+    19: "Travel & Events",
+    15: "Pets & Animals",
+    39: "Horror",
+    36: "Drama",
+    32: "Action/Adventure",
+    43: "Shows",
+    17: "Sports",
+    37: "Family",
+    35: "Documentary",
+    42: "Shorts",
+    26: "Howto & Style",
+    18: "Short Movies",
+    24: "Entertainment",
+    28: "Science & Technology",
+    20: "Gaming",
+    38: "Foreign",
+    25: "News & Politics",
+    23: "Comedy",
+    29: "Nonprofits & Activism",
+    41: "Thriller",
+    44: "Trailers",
+    34: "Comedy",
+    33: "Classics"
+  };
+  const allowedOverrides = new Set(["school", "stem", "tutorial", "news", "friends"]);
+  const disallowedReasons = {
+    gay: "go to the lgbtq center you queer!",
+    furry: "have you practiced drawing today? òwó",
+    sad: "go talk to people!",
+    "brain off": "give a fish a hug and talk it out! 🦈",
+    bored: "exercise!",
+    sleepy: "take a nap!",
+    related: "not the agreement, time-wasting tangents ahead",
+  };
 
   function getQueryVariable(variable) {
     const query = window.location.search.substring(1);
@@ -327,6 +333,16 @@
   // This won't fire in embedded videos, which is probably best
   window.addEventListener('yt-page-data-updated', checkVidCat);
   async function checkVidCat() {
+    const res = await chrome.runtime.sendMessage('CHECK_SUPERVISOR_INSTALLED');
+    if (res.watchdogInstalled && res.selfWebstoreInstalled && isWebstoreVersion) {
+      const v = document.querySelector("video");
+      v.volume = 0;
+      v.onvolumechange = () => v.volume = 0;
+      v.style.filter = "blur(50px)";
+      // don't do anything else, let the dev extension do the work
+      return;
+    }
+
     const videoId = getQueryVariable("v");
     if (!videoId) return;
     // Contained within ytd-player, but there's only 1 video element & specifying causes video to be shown briefly so it's omitted

@@ -2,7 +2,7 @@
 const watchdogId = "bphljigopmbjfmjbdeedhmeadmefcjbf";
 
 // Strict focused youtube (web store)
-const selfWebstoreId = "behjadmmpafnpaeijfoioegdpcbpbhij"
+const selfWebstoreId = "behjadmmpafnpaeijfoioegdpcbpbhij";
 
 const enforce = new Set([
     // pinned means the `key` manifest value is set so the id can't change.
