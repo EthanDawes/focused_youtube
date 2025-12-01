@@ -1,4 +1,4 @@
-# Focused Youtube <a href="https://chrome.google.com/webstore/detail/focused-youtube/nfghbmabdoakhobmimnjkamfdnpfammn"><img width="124" alt="Add to Chrome" src="https://user-images.githubusercontent.com/768070/113516074-a1513500-9578-11eb-9eb9-06326003cf66.png"></a>
+# Focused Youtube <a href="https://chromewebstore.google.com/detail/strict-focused-youtube/behjadmmpafnpaeijfoioegdpcbpbhij"><img width="124" alt="Add to Chrome" src="https://user-images.githubusercontent.com/768070/113516074-a1513500-9578-11eb-9eb9-06326003cf66.png"></a>
 
 Thank you to [makaroni4/focused_youtube](https://github.com/makaroni4/focused_youtube) for the base extension!
 
