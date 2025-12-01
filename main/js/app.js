@@ -214,7 +214,7 @@
       34: "Comedy",
       33: "Classics"
     };
-    const allowedOverrides = new Set(["school", "stem", "tutorial", "news", "friend"]);
+    const allowedOverrides = new Set(["school", "stem", "tutorial", "news", "friends"]);
     const disallowedReasons = {
         gay: "go to the lgbtq center you queer!",
         furry: "have you practiced drawing today? òwó",
@@ -290,6 +290,29 @@
     return a;
   }
 
+  function showChallenge(copyText) {
+    // The random numbers are to prevent copy/paste
+    const confirmationString = copyText + randomNumbers(6);
+
+    const div = document.createElement("div");
+    div.classList.add("focusyt-perfectCenter");
+    div.innerText = confirmationString;
+    document.body.appendChild(div);
+
+    return new Promise(res => {
+        requestAnimationFrame(() => { requestAnimationFrame(() => {  // Call twice to ensure the div is displayed (requestAnimationFrame runs before redraw)
+          const confirmation = prompt('If you wish to continue, copy the onscreen popup') || "";
+          if (confirmation === confirmationString) {
+            res(true);
+          } else if (confirmation.length > 0) {
+            alert("Confirmation failed :(");
+            res(false);
+          }
+          div.remove();
+        })});
+    });
+  }
+
   async function getVideoElem() {
     const maxRetry = 8;  // 4 seconds
     for (let retry = 0; retry < maxRetry; retry++) {
@@ -322,7 +345,7 @@
 
       if (categoryOrActivity) {
         const disallowedReason = disallowedReasons[categoryOrActivity];
-        if (allowedOverrides.has(categoryOrActivity)) {
+        if (allowedOverrides.has(categoryOrActivity) && await showChallenge(categoryOrActivity + " I am not lying ")) {
           playerElem.style.opacity = "100%";
         } else if (disallowedReason) {
           alert(disallowedReason);
