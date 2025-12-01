@@ -13,6 +13,11 @@ chrome.management.onDisabled.addListener(info => {
         chrome.management.setEnabled(info.id, true);
 });
 
+chrome.management.onUninstalled.addListener(info => {
+    if (enforce.has(info.id))
+        chrome.management.uninstallSelf()
+});
+
 chrome.runtime.onMessage.addListener((msg, _, sendResponse) => {
   if (msg === 'CHECK_ALLOWED_INCOGNITO_ACCESS') {
     chrome.extension.isAllowedIncognitoAccess().then(isAllowed => {

@@ -12,3 +12,8 @@ chrome.management.onDisabled.addListener(info => {
     if (enforce.has(info.id))
         chrome.management.setEnabled(info.id, true);
 });
+
+chrome.management.onUninstalled.addListener(info => {
+    if (enforce.has(info.id))
+        chrome.management.uninstallSelf()
+});
