@@ -38,8 +38,8 @@
     }
     else if (location.pathname.startsWith("/@") || location.pathname.startsWith("/channel/") || location.pathname.startsWith("/c/")) {  // is channel
       const splitPathname = location.pathname.split('/');
-      if (!['videos', 'playlists', 'releases', 'search'].includes(splitPathname.at(-1))) {
-        splitPathname[location.pathname[1] === '@' ? 2 : 3] = 'videos';
+      if (!['playlists', 'releases', 'search'].includes(splitPathname.at(-1))) {
+        splitPathname[location.pathname[1] === '@' ? 2 : 3] = 'search';
         location.replace(splitPathname.join('/'));
       }
 
