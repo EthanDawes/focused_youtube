@@ -7,7 +7,11 @@ video {
         filter: invert(1);
     }
 
-    img {
+    img, yt-formatted-string {
         filter: invert(1);
+    }
+    yt-formatted-string, yt-formatted-string * {
+        /* Make emojis have normal color */
+        color: black !important;
     }
 }
