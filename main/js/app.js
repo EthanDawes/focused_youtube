@@ -82,7 +82,6 @@
       "PL0vfts4VzfNiI1BsIK5u7LpPaIDKMJIDN",  // Fireship 100 seconds
       "PLxyDPFsnfrbl1sCoZrgD_-7OQYA9h9o9h",  // Lackadaisy
       "PLaHHpDSEtBWNcGluMk--beDjzriSsp-f7",  // Atlas and the Stars
-      "PLGxvob7l-P9gtuvUpTH97Rt4LcyXXHs6l",  // 2 gay cats
       // "OLAK5uy_l7V5rVd1ESx0tPtiFFkjinoX-yWZXj8KI",  // Spellcasting TODO: artist playlists. This doesn't work b/c all songs have 'added' = today and appear non-chronologically (by popularity)
       //"PL7ZZnDPU-0BBARql5y8JXkOw0uT2KrP93",  // Espresstoe Beans
     ];
