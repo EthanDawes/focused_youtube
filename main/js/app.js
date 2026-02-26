@@ -3,9 +3,8 @@
 
   let currentUrl = window.location.href;
 
-  // API key borrowed from https://crxcavator.io/source/jedeklblgiihonnldgldeagmbkhlblek/1.0.0?file=content.js&platform=Chrome
   // YT stores its key in `ytcfg.get("WEB_PLAYER_CONTEXT_CONFIGS")["WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH"]["innertubeApiKey"]`. However, it doesn't have the correct permissions
-  const apiKey = "AIzaSyCLtPIDnh66lUXv440RfC09ztaQekc2KxA";
+  const apiKey = "AIzaSyAlFXU3JgCbwn0h9pEDvEjzW2Vk3JKovUo";
   // now that I know how to exec js in main ctx, looked into using native api requests, but google uses wierd token (https://gist.github.com/eyecatchup/2d700122e24154fdc985b7071ec7764a) might just be easier to continue. Plus, searching all global vars yielded nothing
 
   let cleanUpFYClasses = () => {
@@ -359,6 +358,8 @@
     const videoMetadata = await (await fetch(`https://youtube.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet&key=${apiKey}`)).json();
     // Optional chaining in case rate limit exceeded
     const videoCatId = Number.parseInt(videoMetadata.items?.[0]?.snippet?.categoryId ?? "-1");
+    if (videoCatId == -1)
+        console.log("Failed to get video info", videoMetadata);
     const videoCat = catIds[videoCatId];
     if (!([35, 27, 25, 28, 29]).includes(videoCatId)) {
       if (document.visibilityState === "hidden") return;
