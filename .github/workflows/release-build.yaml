@@ -45,10 +45,20 @@ jobs:
       run: |
         cd main && zip -r ../extension.zip .
 
+    - name: Remove "background.scripts" from manifest.json (for Edge)
+      run: |
+        jq 'del(.background.scripts)' main/manifest.json > main/manifest.tmp && mv main/manifest.tmp main/manifest.json
+
+    - name: Zip main directory
+      run: |
+        cd main && zip -r ../extension_edge.zip .
+
     - name: Create release
       if: env.new_version == 'true'
       uses: softprops/action-gh-release@v2
       with:
         tag_name: ${{ env.current_version }}
         name: Release ${{ env.current_version }}
-        files: extension.zip
+        files: |
+          extension.zip
+          extension_edge.zip
