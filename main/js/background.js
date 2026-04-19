@@ -3,10 +3,12 @@ const watchdogId = "bphljigopmbjfmjbdeedhmeadmefcjbf";
 
 // Strict focused youtube (web store)
 const selfWebstoreId = "behjadmmpafnpaeijfoioegdpcbpbhij";
+const selfEdgestoreId = "alcdfieimieapdlghfpmmhhjmodbokep";
 
 const enforce = new Set([
     // pinned means the `key` manifest value is set so the id can't change.
-    selfWebstoreId, 
+    selfWebstoreId,
+    selfEdgestoreId,
     watchdogId,
     "kpomkjpijklmdabpfgphmapbopjockgd", // Intentional Web (web store)
     "ejnaicioaeopejbifeboomfpcommcnng", // Intentional Web (local, NOT pinned so CAN change)
@@ -41,7 +43,7 @@ chrome.runtime.onMessage.addListener((msg, _, sendResponse) => {
   } else if (msg == 'CHECK_SUPERVISOR_INSTALLED') {
     (async () => {
       const watchdogInstalled = await extensionInstalled(watchdogId);
-      const selfWebstoreInstalled = await extensionInstalled(selfWebstoreId);
+      const selfWebstoreInstalled = await extensionInstalled(selfWebstoreId) || await extensionInstalled(selfEdgestoreId);
       sendResponse({ watchdogInstalled, selfWebstoreInstalled });
     })();
     return true;
