@@ -10,10 +10,14 @@ video {
     img, yt-formatted-string {
         filter: invert(1);
     }
-    yt-formatted-string:not(.yt-notification-action-renderer), yt-formatted-string:not(.yt-notification-action-renderer) * {
+
+    yt-formatted-string,
+    yt-formatted-string * {
         /* Make emojis have normal color (except for toast, which already has a black background) */
         color: black !important;
     }
+
+    yt-formatted-string.yt-notification-action-renderer,
     yt-formatted-string.yt-notification-action-renderer * {
         /* Since un-inverted, toast is black text on black background (which is still inverted) */
         color: white !important;
