@@ -253,6 +253,7 @@
         "kurzgesagt",
         "LEMMiNO",
         "OverSimplified",
+        "Ethanimale",
 
         // Repetitive: incidents often have same few causes. Long videos. Tricks you by appearing educational
         "MentourPilot",
